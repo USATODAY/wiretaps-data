@@ -1,8 +1,20 @@
 .chart { position: relative; }
 
 .chart-title {
-    font-family: "Futura Today Light", Arial, sans-serif;
+    color: $blue;
+    font-family: "Futura Today DemiBold", Arial, sans-serif;
+    font-size: 1.4em;
     margin-left: 30px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.chart-chatter {
+    color: $medium-grey;
+    font-family: Arial, sans-serif;
+    margin-bottom: 2em;
+    margin-left: 30px;
+    margin-top: 0.5em;
 }
 
 line,
