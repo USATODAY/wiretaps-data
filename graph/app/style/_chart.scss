@@ -1,0 +1,82 @@
+.chart { position: relative; }
+
+.chart-title {
+    font-family: "Futura Today Light", Arial, sans-serif;
+    margin-left: 30px;
+}
+
+line,
+rect {
+    // shape-rendering: crispEdges;
+}
+
+line {
+    opacity: 0.25;
+    stroke-width: 2px;
+}
+
+line.line--hover {
+    opacity: 1;
+}
+
+line.california-riverside, text.california-riverside {
+    opacity: 1;
+}
+
+text.california-riverside {
+    fill: $blue;
+}
+
+.axis {
+    font-size: 11px;
+    -webkit-font-smoothing: antialiased;
+    fill: #999;
+
+    path,
+    line {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+    }
+
+    &.y {
+        path { display: none; }
+        .tick line { display: none; }
+    }
+}
+
+.grid {
+    path { display: none; }
+    .tick {
+        stroke: #eee;
+        stroke-width: 1px;
+        shape-rendering: crispEdges;
+    }
+
+    &.y {
+        g:first-child line { display: none; }
+    }
+}
+
+.value text {
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+
+    &.in { fill: #fff; }
+    &.out { fill: #999; }
+    &.other { display: none; }
+}
+
+text {
+    font-family: "Futura Today Normal", Arial, sans-serif;
+}
+
+.column-label {
+    font-size: 12px;
+}
+
+.voronoi path {
+  fill: none;
+  pointer-events: all;
+}
+
