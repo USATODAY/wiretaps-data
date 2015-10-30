@@ -44,7 +44,7 @@ var onWindowLoaded = function() {
 
 var loadCSV = function() {
     d3.csv(GRAPHIC_DATA_URL, function(error, data) {
-        DATA = _.take(data, 30);
+        DATA = _.take(data, 20);
 
         formatData();
 
