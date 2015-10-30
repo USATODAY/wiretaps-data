@@ -27,11 +27,11 @@ line {
     stroke-width: 2px;
 }
 
-line.line--hover {
+line.line--hover, path.line--hover {
     opacity: 1;
 }
 
-line.california-riverside, text.california-riverside {
+path.california-riverside, line.california-riverside, text.california-riverside {
     opacity: 1;
 }
 
@@ -89,6 +89,7 @@ text {
 
 .voronoi path {
   fill: none;
+  // stroke: $medium-grey;
   pointer-events: all;
 }
 

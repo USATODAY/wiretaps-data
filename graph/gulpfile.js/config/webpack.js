@@ -30,7 +30,9 @@ module.exports = function(env) {
 
   if (env !== 'test') {
     webpackConfig.entry = {
-      main: ['./main.js']
+      main: ['./main.js'],
+      fever: ['./fever.js'],
+      slope: ['./slopegraph.js'],
     };
 
     webpackConfig.output = {
