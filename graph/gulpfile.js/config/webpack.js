@@ -33,6 +33,7 @@ module.exports = function(env) {
       main: ['./main.js'],
       fever: ['./fever.js'],
       slope: ['./slopegraph.js'],
+      "fever-multiple": ['./fever-multiple.js']
     };
 
     webpackConfig.output = {

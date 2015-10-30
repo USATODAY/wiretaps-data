@@ -246,7 +246,13 @@ var renderSlopegraph = function(config) {
                 return yScale(d[endColumn]);
             })
             .style('stroke', function(d) {
-                return colorScale(d[labelColumn])
+                // return colorScale(d[labelColumn])
+                if (d[labelColumn] == "CALIFORNIA, RIVERSIDE") {
+                    return colorScale(d[labelColumn]);
+                } else {
+                    return "grey";
+                }
+
             })
             .on('mouseover', function(d) {
                 var label = chartElement.select('.label').select('.' + classify(d[labelColumn]));
@@ -285,7 +291,12 @@ var renderSlopegraph = function(config) {
             })
             .attr('r', dotRadius)
             .style('fill', function(d) {
-                return colorScale(d[labelColumn])
+                if (d[labelColumn] == "CALIFORNIA, RIVERSIDE") {
+                    return colorScale(d[labelColumn]);
+                } else {
+                    return "grey";
+                }
+                // return colorScale(d[labelColumn])
             });
 
     /*
@@ -402,7 +413,12 @@ var renderSlopegraph = function(config) {
             })
             .attr('r', dotRadius)
             .style('fill', function(d) {
-                return colorScale(d[labelColumn])
+                // return colorScale(d[labelColumn])
+                if (d[labelColumn] == "CALIFORNIA, RIVERSIDE") {
+                    return colorScale(d[labelColumn]);
+                } else {
+                    return "grey";
+                }
             });
 
 

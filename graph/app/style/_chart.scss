@@ -93,3 +93,40 @@ text {
   pointer-events: all;
 }
 
+.chart-info {
+    margin-left: 30px;
+
+}
+
+.source-line {
+    color: $medium-grey;
+    font-family: Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0.5em auto;
+    strong {
+        font-weight: 700;
+    }
+}
+
+.multi-fever {
+    display: inline-block;
+
+    line {
+        opacity: 1;
+        stroke-width: 2px;
+    }
+
+}
+
+.multi-fever-label {
+    color: $medium-grey;
+    font-family: "Futura Today Light", Arial, sans-serif;
+    font-size: 0.8em;
+    width: 200px;
+}
+
+.multi-fever-wrap {
+    padding: 0 30px;
+}
+

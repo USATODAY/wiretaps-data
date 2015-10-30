@@ -6,9 +6,11 @@
 {% extends 'layouts/application.html' %}
 
 {% block content %}
-<h3 class="chart-title">Wiretaps by jurisdiction</h3>
-<p class="chart-chatter">Riverside, CA has more wiretaps than any other jurisdiction in the US.</p>
+<h3 class="chart-title">{{project_info.header}}</h3>
+<p class="chart-chatter">{{project_info.chatter}}</p>
 <div id="graphic"></div>
+<h4 class="source-line"><strong>Source: </strong> {{project_info.source}}</h4>
+<h4 class="source-line"><strong>Credit: </strong> {{project_info.credits}}</h4>
 {% endblock %}
 
 {% block javascript %}

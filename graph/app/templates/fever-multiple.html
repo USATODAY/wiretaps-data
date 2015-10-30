@@ -8,7 +8,7 @@
 {% block content %}
 <h3 class="chart-title">{{project_info.header}}</h3>
 <p class="chart-chatter">{{project_info.chatter}}</p>
-<div id="graphic"></div>
+<div id="graphic" class="multi-fever-wrap"></div>
 <div class="chart-info">
     <h4 class="source-line"><strong>Source: </strong> {{project_info.source}}</h4>
     <h4 class="source-line"><strong>Credit: </strong> {{project_info.credits}}</h4>
@@ -16,5 +16,5 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="js/slope.js"></script>
+<script src="js/fever-multiple.js"></script>
 {% endblock %}
