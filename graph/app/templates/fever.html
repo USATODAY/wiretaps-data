@@ -1,0 +1,16 @@
+{#
+  Swig Templating!
+  Docs: http://paularmstrong.github.io/swig/docs/
+#}
+
+{% extends 'layouts/application.html' %}
+
+{% block content %}
+<h3 class="chart-title">Wiretaps by jurisdiction</h3>
+<p class="chart-chatter">Riverside, CA has more wiretaps than any other jurisdiction in the US.</p>
+<div id="graphic"></div>
+{% endblock %}
+
+{% block javascript %}
+<script src="js/fever.js"></script>
+{% endblock %}
