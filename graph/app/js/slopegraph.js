@@ -129,7 +129,7 @@ var renderSlopegraph = function(config) {
     var margins = {
         top: 20,
         right: 185,
-        bottom: 20,
+        bottom: 60,
         left: 40
     };
     
