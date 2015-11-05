@@ -6,7 +6,7 @@ var _ = require('lodash');
 var GRAPHIC_DEFAULT_WIDTH = 600;
 var MOBILE_THRESHOLD = 500;
 var SIDEBAR_THRESHOLD = 280;
-var GRAPHIC_DATA_URL = 'data/wiretaps.csv'
+var GRAPHIC_DATA_URL = 'data/new_wiretaps.csv'
 var GRAPHIC_METADATA = {
     startLabel: '2010',
     endLabel: '2014'
@@ -53,7 +53,9 @@ var loadLocalData = function(data) {
  */
 var loadCSV = function(url) {
     d3.csv(GRAPHIC_DATA_URL, function(error, data) {
-        graphicData = _.take(data, 30);
+        graphicData = _.take(_.filter(data, function(d) {
+            return d['2010'] !== "";
+        }), 30);
 
         formatData();
 
@@ -122,7 +124,7 @@ var renderSlopegraph = function(config) {
     var endLabel = config['metadata']['endLabel'];
 
     var aspectWidth = 5;
-    var aspectHeight = 5;
+    var aspectHeight = 4;
 
     var margins = {
         top: 20,
@@ -138,17 +140,17 @@ var renderSlopegraph = function(config) {
     var labelGap = 42;
 
     // Mobile
-    if (isSidebar) {
-        aspectWidth = 2;
-        aspectHeight = 3;
-        margins['left'] = 30;
-        margins['right'] = 105;
-        labelGap = 32;
-    } else if (isMobile) {
-        aspectWidth = 2.5
-        aspectHeight = 3;
-        margins['right'] = 145;
-    }
+    // if (isSidebar) {
+    //     aspectWidth = 2;
+    //     aspectHeight = 2;
+    //     margins['left'] = 30;
+    //     margins['right'] = 105;
+    //     labelGap = 32;
+    // } else if (isMobile) {
+    //     aspectWidth = 2.5
+    //     aspectHeight = 2.5;
+    //     margins['right'] = 145;
+    // }
 
     // Calculate actual chart dimensions
     var chartWidth = config['width'] - margins['left'] - margins['right'];
@@ -247,7 +249,7 @@ var renderSlopegraph = function(config) {
             })
             .style('stroke', function(d) {
                 // return colorScale(d[labelColumn])
-                if (d[labelColumn] == "CALIFORNIA, RIVERSIDE") {
+                if (d[labelColumn] == "Riverside County, Calif.") {
                     return colorScale(d[labelColumn]);
                 } else {
                     return "grey";
@@ -291,7 +293,7 @@ var renderSlopegraph = function(config) {
             })
             .attr('r', dotRadius)
             .style('fill', function(d) {
-                if (d[labelColumn] == "CALIFORNIA, RIVERSIDE") {
+                if (d[labelColumn] == "Riverside County, Calif.") {
                     return colorScale(d[labelColumn]);
                 } else {
                     return "grey";
@@ -414,7 +416,7 @@ var renderSlopegraph = function(config) {
             .attr('r', dotRadius)
             .style('fill', function(d) {
                 // return colorScale(d[labelColumn])
-                if (d[labelColumn] == "CALIFORNIA, RIVERSIDE") {
+                if (d[labelColumn] == "Riverside County, Calif.") {
                     return colorScale(d[labelColumn]);
                 } else {
                     return "grey";
