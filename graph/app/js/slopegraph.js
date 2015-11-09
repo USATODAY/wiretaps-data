@@ -484,6 +484,8 @@ var renderSlopegraph = function(config) {
           .on("mouseover", mouseover)
           .on("mouseout", mouseout);
 
+    sendHeight();
+
 }
 
 /*
@@ -595,10 +597,15 @@ var getWidth = function() {
     var width = GRAPHIC_DEFAULT_WIDTH;
     var winWidth = window.innerWidth;
     if (winWidth < width) {
-        width = winWidth;
+        width = winWidth - 20;
     }
     return width;
 };
+
+function sendHeight() {
+    var height = document.getElementsByTagName("html")[0].offsetHeight;
+    parent.postMessage({height: height}, '*');
+}
 /*
  * Initially load the graphic
  * (NB: Use window.load to ensure all images have loaded)
