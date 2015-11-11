@@ -1,6 +1,7 @@
 var d3 = require('d3');
 var pym = require('pym.js');
 var _ = require('lodash');
+var $ = require('jquery');
 
 // Global config
 var GRAPHIC_DEFAULT_WIDTH = 600;
@@ -28,7 +29,10 @@ var graphicData = null;
 var onWindowLoaded = function() {
     // if (Modernizr.svg) {
         // loadLocalData(GRAPHIC_DATA);
-        loadCSV('data.csv')
+        loadCSV('data.csv');
+        $(window).on('resize', function() {
+            render($(window).width(), true);
+        });
     // } else {
         // pymChild = new pym.Child({});
     // }
@@ -59,9 +63,10 @@ var loadCSV = function(url) {
 
         formatData();
 
-        pymChild = new pym.Child({
-            renderCallback: render
-        });
+        // pymChild = new pym.Child({
+        //     renderCallback: render
+        // });
+        render($(window).width(), false);
     });
 }
 
@@ -78,7 +83,7 @@ var formatData = function() {
 /*
  * Render the graphic(s). Called by pym with the container width.
  */
-var render = function(containerWidth) {
+var render = function(containerWidth, redraw) {
     if (!containerWidth) {
         containerWidth = getWidth();
     }
@@ -95,12 +100,14 @@ var render = function(containerWidth) {
         isSidebar = false;
     }
 
+
     // Render the chart!
     renderSlopegraph({
         container: '#graphic',
         width: containerWidth,
         data: graphicData,
-        metadata: GRAPHIC_METADATA
+        metadata: GRAPHIC_METADATA,
+        redraw: redraw,
     });
 
     // Update iframe
@@ -132,6 +139,11 @@ var renderSlopegraph = function(config) {
         bottom: 60,
         left: 40
     };
+
+    if ((margins.right / config.width) > 0.5) {
+
+        margins.right = config.width * 0.5;
+    }
     
     var ticksX = 2;
     var ticksY = 10;
@@ -387,16 +399,18 @@ var renderSlopegraph = function(config) {
 
     var curtainWidth = chartWidth + margins['left'] + margins['right'];
     var curtainHeight = chartHeight + margins['top'] + margins['bottom']
+    if (!config.redraw) {
 
-    var curtain = chartElement.append('rect')
-        .attr('x', -1 * curtainWidth)
-        .attr('y', -1 * curtainHeight)
-        .attr('height', curtainHeight)
-        .attr('width', curtainWidth)
-        .attr('class', 'curtain')
-        .attr('transform', 'rotate(180) translate(25, 25)')
-        .style('fill', '#ffffff');
+        var curtain = chartElement.append('rect')
+            .attr('x', -1 * curtainWidth)
+            .attr('y', -1 * curtainHeight)
+            .attr('height', curtainHeight)
+            .attr('width', curtainWidth)
+            .attr('class', 'curtain')
+            .attr('transform', 'rotate(180) translate(25, 25)')
+            .style('fill', '#ffffff');
 
+    }
     /*
      * Render start dots to chart.
      */
@@ -603,7 +617,7 @@ var getWidth = function() {
 };
 
 function sendHeight() {
-    var height = document.getElementsByTagName("html")[0].offsetHeight;
+    var height = $('body').height() + 30;
     parent.postMessage({height: height}, '*');
 }
 /*

@@ -85,6 +85,9 @@ text {
 
 .column-label {
     font-size: 14px;
+    @media (max-width: 350px) {
+        font-size: 12px;
+    }
 }
 
 .voronoi path {
@@ -107,6 +110,7 @@ text {
     strong {
         font-weight: 700;
     }
+    
 }
 
 .multi-fever {
